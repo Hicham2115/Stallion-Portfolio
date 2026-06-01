@@ -1,28 +1,28 @@
 "use client";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
 
-gsap.registerPlugin(useGSAP);
-
 export function Hero({ animate }: { animate: boolean }) {
   const root = useRef<HTMLElement>(null);
-  const tl = useRef<gsap.core.Timeline>(null);
 
-  useGSAP(
-    () => {
-      tl.current = gsap
-        .timeline({ paused: true })
-        .from(".hero-top", { autoAlpha: 0, y: 30, duration: 0.8, ease: "power3.out" }, 0)
-        .from(".hero-title .ln > span", { yPercent: 110, duration: 1.05, ease: "power4.out", stagger: 0.1 }, 0.05)
-        .from(".hero-bottom-item", { autoAlpha: 0, y: 30, duration: 0.8, ease: "power3.out", stagger: 0.1 }, 0.2);
-    },
-    { scope: root }
-  );
-
+  // Hide elements immediately so they don't flash before loading screen exits
   useEffect(() => {
-    if (animate) tl.current?.play();
+    if (!root.current) return;
+    gsap.set(root.current.querySelectorAll(".hero-top, .hero-bottom-item"), { autoAlpha: 0, y: 30 });
+    gsap.set(root.current.querySelectorAll(".hero-title .ln > span"), { yPercent: 110 });
+  }, []);
+
+  // Fire entrance animation only after loading screen calls onComplete
+  useEffect(() => {
+    if (!animate || !root.current) return;
+    const ctx = gsap.context(() => {
+      gsap.timeline()
+        .to(".hero-top",              { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0)
+        .to(".hero-title .ln > span", { yPercent: 0, duration: 1.05, ease: "power4.out", stagger: 0.1 }, 0.05)
+        .to(".hero-bottom-item",      { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1 }, 0.2);
+    }, root.current);
+    return () => ctx.revert();
   }, [animate]);
 
   return (
