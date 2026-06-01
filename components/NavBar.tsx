@@ -80,7 +80,7 @@ export function NavBar() {
           <a
             href="#contact"
             data-cursor="→"
-            className="font-[family-name:var(--font-body)] text-[13px] font-bold px-[18px] py-2 rounded-full bg-[var(--lime)] text-[var(--ink)] no-underline transition-opacity duration-200 hover:opacity-85"
+            className="font-[family-name:var(--font-body)] text-[13px] font-bold px-[18px] py-2 rounded-full bg-[var(--lime)] text-black! no-underline transition-opacity duration-200 hover:opacity-85"
           >
             Contact Us
           </a>
