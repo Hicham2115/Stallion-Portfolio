@@ -34,8 +34,8 @@ export function NavBar() {
     <header
       className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-500 ${
         scrolled
-          ? "bg-[rgba(14,16,19,0.82)] backdrop-blur-[18px] border-b border-white/[0.07] shadow-[0_1px_24px_rgba(0,0,0,0.45)]"
-          : "[mix-blend-mode:difference]"
+          ? "bg-[rgba(10,12,15,0.75)] backdrop-blur-xl border-b border-white/6 shadow-[0_1px_32px_rgba(0,0,0,0.5)]"
+          : "bg-transparent"
       }`}
     >
       <div className="wrap flex h-[76px] items-center gap-6">
@@ -54,15 +54,15 @@ export function NavBar() {
           STALLION<span className="text-[var(--lime)]">.</span>
         </a>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — glass pill */}
         <NavigationMenu className="hidden md:flex ml-auto">
-          <NavigationMenuList className="gap-1">
+          <NavigationMenuList className="gap-0.5 rounded-full px-1 py-1">
             {LINKS.map((l) => (
               <NavigationMenuItem key={l.label}>
                 <NavigationMenuLink
                   href={l.href}
                   data-cursor="→"
-                  className="font-[family-name:var(--font-body)] text-[14px] font-medium text-white px-[14px] py-[7px] rounded-lg bg-transparent transition-colors duration-300 hover:text-[var(--lime)]"
+                  className="font-[family-name:var(--font-body)] text-[13px] font-medium text-white/70 px-3.5 py-1.5 rounded-full bg-transparent transition-all duration-200 hover:text-white hover:bg-white/10"
                 >
                   {l.label}
                 </NavigationMenuLink>
@@ -73,7 +73,7 @@ export function NavBar() {
 
         {/* Right — live dot + CTA (desktop) */}
         <div className="hidden md:flex items-center gap-4">
-          <div className="flex items-center gap-2 text-[13px] font-medium text-white">
+          <div className="flex items-center gap-2 text-[13px] font-medium text-white/70">
             <span className="inline-block w-[7px] h-[7px] rounded-full bg-[var(--lime)] shadow-[0_0_10px_var(--lime)]" />
             Casablanca
           </div>
@@ -91,7 +91,7 @@ export function NavBar() {
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                className="group size-9 text-white"
+                className="group size-9 text-white/80 hover:text-white bg-white/6 hover:bg-white/12 backdrop-blur-xl border border-white/10 rounded-lg transition-all duration-200"
                 size="icon"
                 variant="ghost"
                 aria-label="Open menu"
@@ -125,16 +125,16 @@ export function NavBar() {
             </PopoverTrigger>
             <PopoverContent
               align="end"
-              className="w-52 p-1 bg-[rgba(14,16,19,0.97)] backdrop-blur-[16px] border border-white/10"
+              className="w-52 p-1.5 bg-[rgba(12,14,18,0.85)] backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
             >
               <NavigationMenu className="max-w-none *:w-full">
-                <NavigationMenuList className="flex-col items-start gap-0">
+                <NavigationMenuList className="flex-col items-start gap-0.5">
                   {[...LINKS, { label: "Contact", href: "#contact" }].map(
                     (l) => (
                       <NavigationMenuItem className="w-full" key={l.label}>
                         <NavigationMenuLink
                           href={l.href}
-                          className="flex items-center w-full py-2.5 px-3 font-[family-name:var(--font-body)] text-[14px] font-semibold text-[#d1d5db]"
+                          className="flex items-center w-full py-2.5 px-3 rounded-lg font-(family-name:--font-body) text-[14px] font-medium text-white/70 transition-all duration-200 hover:text-white hover:bg-white/8"
                         >
                           {l.label}
                         </NavigationMenuLink>
