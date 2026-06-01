@@ -91,7 +91,7 @@ export function NavBar() {
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                className="group size-9 text-white/80 hover:text-white bg-white/6 hover:bg-white/12 backdrop-blur-xl border border-white/10 rounded-lg transition-all duration-200"
+                className="group size-9 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
                 size="icon"
                 variant="ghost"
                 aria-label="Open menu"
@@ -134,7 +134,7 @@ export function NavBar() {
                       <NavigationMenuItem className="w-full" key={l.label}>
                         <NavigationMenuLink
                           href={l.href}
-                          className="flex items-center w-full py-2.5 px-3 rounded-lg font-(family-name:--font-body) text-[14px] font-medium text-white/70 transition-all duration-200 hover:text-white hover:bg-white/8"
+                          className="flex items-center w-full py-2.5 px-3 rounded-lg font-(family-name:--font-body) text-[14px] font-medium text-white! transition-all duration-200 hover:bg-white/8"
                         >
                           {l.label}
                         </NavigationMenuLink>
