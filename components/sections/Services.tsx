@@ -44,6 +44,7 @@ export function Services() {
 function ServiceRow({ n, title, desc }: { n: string; title: string; desc: string }) {
   return (
     <div
+      data-fade
       data-cursor="→"
       className="group grid grid-cols-[60px_1fr_auto] items-center gap-6 px-2 py-[30px] border-b border-[var(--line)] relative cursor-none transition-[padding] duration-[400ms] hover:pl-6 max-[720px]:grid-cols-[40px_1fr]"
     >

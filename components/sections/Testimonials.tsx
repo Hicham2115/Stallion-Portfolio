@@ -38,6 +38,16 @@ export function Testimonials() {
     { scope: root }
   );
 
+  useGSAP(
+    () => {
+      if (isLoading || !items.length) return;
+      gsap.from(".testimonial-card", {
+        autoAlpha: 0, y: 40, duration: 0.75, ease: "power3.out", stagger: 0.1,
+      });
+    },
+    { scope: root, dependencies: [isLoading] }
+  );
+
   return (
     <section ref={root} className="sec wrap" id="testimonials">
       <div className="sec-head">
@@ -63,8 +73,7 @@ export function Testimonials() {
 function TestimonialCard({ testimonial: t }: { testimonial: Testimonial }) {
   return (
     <article
-      data-fade
-      className="bg-[var(--ink-2)] border border-[var(--line)] rounded-[22px] p-9 flex flex-col gap-6 transition-[border-color,transform] duration-500 hover:border-[rgba(186,252,12,0.4)] hover:-translate-y-1"
+      className="testimonial-card bg-[var(--ink-2)] border border-[var(--line)] rounded-[22px] p-9 flex flex-col gap-6 transition-[border-color,transform] duration-500 hover:border-[rgba(186,252,12,0.4)] hover:-translate-y-1"
     >
       <div className="text-[var(--lime)] text-[13px] tracking-[4px]">★★★★★</div>
       <p className="font-[family-name:var(--font-display)] font-medium leading-[1.35] tracking-[-0.01em] text-[var(--fg)]"

@@ -38,6 +38,16 @@ export function Cases() {
     { scope: root }
   );
 
+  useGSAP(
+    () => {
+      if (isLoading || !cases.length) return;
+      gsap.from(".case-card", {
+        autoAlpha: 0, y: 40, duration: 0.75, ease: "power3.out", stagger: 0.12,
+      });
+    },
+    { scope: root, dependencies: [isLoading] }
+  );
+
   return (
     <section ref={root} className="sec wrap" id="cases">
       <div className="sec-head">
@@ -64,8 +74,7 @@ export function Cases() {
 function CaseCard({ study, flip }: { study: Case; flip: boolean }) {
   return (
     <article
-      data-fade
-      className="bg-[var(--ink-2)] border border-[var(--line)] rounded-[22px] overflow-hidden transition-[border-color] duration-[400ms] hover:border-[rgba(186,252,12,0.35)]"
+      className="case-card bg-[var(--ink-2)] border border-[var(--line)] rounded-[22px] overflow-hidden transition-[border-color] duration-[400ms] hover:border-[rgba(186,252,12,0.35)]"
     >
       {/* Bar */}
       <div className="flex items-center justify-between gap-6 flex-wrap px-[34px] py-[30px] border-b border-[var(--line)]">
